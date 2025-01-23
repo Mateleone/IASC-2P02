@@ -1,0 +1,30 @@
+body{
+    background-color: bisque;
+    color: Orange;
+    width: fit-content;
+    margin:0 auto ;
+    text-align: left;
+}
+
+h1{
+    font-size: 36;
+}
+
+h2{
+    font-size: 28;
+}
+
+li{
+    font-size: 24;
+    list-style-type: none;
+}
+
+a {
+    color: orangered;
+    text-decoration: none;
+}
+
+a:hover {
+    color:brown;
+    text-decoration: overline;
+}
