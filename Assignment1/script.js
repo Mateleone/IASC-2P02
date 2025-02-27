@@ -117,7 +117,25 @@ directionalLight.shadow.mapSize.height = 2048
 const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight)
 scene.add(directionalLightHelper)
 
+/******
+ * 
+ * DOM Interactions
+ * 
+ */
+const domObject = {
+    part: 1
+}
 
+//part-one
+document.querySelector('#part-one').onclick = function(){
+    domObject.part =1
+    console.log('Part one!')
+}
+
+//part-two
+document.querySelector('#part-two').onclick = function(){
+    domObject.part =2
+}
 
 //UI
 const ui = new dat.GUI()
@@ -150,9 +168,19 @@ const animation = () =>
      //console.log("Test")
     // Return elasped Time
     const elapsedTime = clock.getElapsedTime()
+    
+    //part-one
+    if(domObject.part === 1){
+        torusKnot.position.y =-3
+        
+    }
 
-    //Animate object
-    torusKnot.rotation.y = elapsedTime
+    //part-two
+    if (domObject.part === 2){
+        torusKnot.position.y =3
+    }
+
+    
     
     //update directional light helper
     directionalLightHelper.update()
