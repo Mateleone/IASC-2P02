@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <title>Assignment 1</title>
+    <!--three.js importmap-->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://ga.jspm.io/npm:three@0.168.0/build/three.module.js",
+                "OrbitControls": "https://ga.jspm.io/npm:three@0.168.0/examples/jsm/controls/OrbitControls.js",
+                "lil-gui": "https://ga.jspm.io/npm:lil-gui@0.19.2/dist/lil-gui.esm.js"
+            }
+        }
+    </script>
+    <!--css-->
+    <link rel="stylesheet" href="style.css">
+    <!---three.js scene-->
+    <script src="script.js" type="module"></script>
+</head>
+<body>
+    <div class= "flexbox">
+        <!--Essay-->
+        <div class ="essay">
+            <h2>1. Flatness</h2>
+            <p>From inside the cave...</p>
+            
+            <p>First paragrpah goes here.</p>
+
+            <p>Second paragraph goes here.</p>
+            <h2>2. Seeing Double</h2>
+            <p>From outside the cave...</p>
+
+            <p>Third paragraph goes here</p>
+
+            <p>Fourth paragraph goes here</p>
+        </div>
+
+        <!--Scene-->
+        <div class ="scene">
+            <canvas class="webgl"></canvas>
+        </div>
+    </div> 
+</body>
