@@ -26,10 +26,11 @@ console.log("Hi there")
 const canvas = document.querySelector('.webgl')
 //Scene
 const scene = new THREE.Scene()
+
 //scene.background = new THREE.Color('pink')
 //Camera
 const camera = new THREE.PerspectiveCamera(
-    75,
+    60,
     sizes.aspectRatio,
     0.1,
     100
@@ -66,34 +67,24 @@ cave.receiveShadow = true
 scene.add(cave)
 
 //Objects
-const torusKnotGeometry = new THREE.TorusKnotGeometry(1, 0.2)
-const torusKnotMaterial = new THREE.MeshNormalMaterial()
-const torusKnot = new THREE.Mesh(torusKnotGeometry, torusKnotMaterial)
-torusKnot.position.set(10, 5, 0)
-torusKnot.castShadow = true
-scene.add(torusKnot)
+//sun
+const sunGeometry = new THREE.SphereGeometry(1.5, 32, 32) 
+const sunMaterial = new THREE.MeshNormalMaterial() 
+const sun = new THREE.Mesh(sunGeometry, sunMaterial)
+sun.position.set(10, 0, 0) 
+sun.castShadow = true
+scene.add(sun)
 
-//smile stuff
-const eyeGeometry = new THREE.SphereGeometry(0.3, 16, 16)
-const eyeMaterial = new THREE.MeshStandardMaterial({ color: 'white' })
-const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
-leftEye.position.set(5.4, 2, 1.2)
-leftEye.castShadow = true
-scene.add(leftEye)
 
-const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
-rightEye.position.set(5.4, 2, -1.2)
-rightEye.castShadow = true
-scene.add(rightEye)
 
-const mouthGeometry = new THREE.TorusGeometry(0.8, 0.15, 16, 50, Math.PI)
-const mouthMaterial = new THREE.MeshStandardMaterial({ color: 'white' })
-const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial)
-mouth.position.set(6, 0.5, 0.2)
-mouth.rotation.x = Math.PI
-mouth.rotation.y = Math.PI /2 
-mouth.castShadow = true
-scene.add(mouth)
+
+//planet
+const planetGeometry = new THREE.SphereGeometry(.5, 32,32) 
+const planetMaterial = new THREE.MeshNormalMaterial() 
+const planet = new THREE.Mesh(planetGeometry, planetMaterial)
+planet.position.set(5, 0, 2.1) 
+planet.castShadow = true
+scene.add(planet)
 //LIGHTS//
 
 //Ambient Light
@@ -106,7 +97,7 @@ const directionalLight = new THREE.DirectionalLight(
     0.5
 )
 scene.add(directionalLight)
-directionalLight.position.set(20, 4.1, 0)
+directionalLight.position.set(20, 0, 0)
 directionalLight.target = cave
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.width = 2048
@@ -123,7 +114,11 @@ scene.add(directionalLightHelper)
  * 
  */
 const domObject = {
-    part: 1
+    part: 1,
+    firstChange: false,
+    secondChange: false,
+    thirdChange: false,
+    fourthChange: false
 }
 
 //part-one
@@ -136,6 +131,36 @@ document.querySelector('#part-one').onclick = function(){
 document.querySelector('#part-two').onclick = function(){
     domObject.part =2
 }
+
+//firstchange
+
+document.querySelector('#first-change').onclick = function(){
+    domObject.firstChange = true
+    console.log('change 1')
+}
+
+//secondchange
+document.querySelector('#second-change').onclick = function(){
+    domObject.secondChange = true
+    console.log('change 2')
+}
+
+//thirdchange
+document.querySelector('#third-change').onclick = function(){
+    domObject.thirdChange = true
+    console.log('change 3')
+}
+
+//fourthchange
+document.querySelector('#fourth-change').onclick = function(){
+    domObject.fourthChange = true
+    console.log('change 4')
+}
+
+
+
+
+
 
 //UI
 const ui = new dat.GUI()
@@ -169,19 +194,48 @@ const animation = () =>
     // Return elasped Time
     const elapsedTime = clock.getElapsedTime()
     
+
+
     //part-one
     if(domObject.part === 1){
-        torusKnot.position.y =-3
+        camera.position.set(6, 0, 0)
+        camera.lookAt( 0, 0, 0)
         
     }
 
     //part-two
     if (domObject.part === 2){
-        torusKnot.position.y =3
+        camera.position.set(25,1,0)
+        camera.lookAt(0,0,0)
     }
 
-    
-    
+    //firstchange
+    if(domObject.firstChange)
+    {
+        sun.position.y = Math.sin(elapsedTime) * 1.5; 
+        planet.position.y = Math.sin(elapsedTime) * 1;
+    }
+
+    //secondchange
+    if(domObject.secondChange)
+    {
+        const orbitRadius = 2.2 // Distance from the sun
+        planet.position.x = sun.position.x + Math.cos(elapsedTime) * orbitRadius
+        planet.position.z = sun.position.z + Math.sin(elapsedTime) * orbitRadius 
+    }
+    //thirdChange
+    if(domObject.thirdChange)
+    {
+        
+    }
+
+    //fourthchange
+    if(domObject.fourthChange)
+    {
+            
+    }
+
+
     //update directional light helper
     directionalLightHelper.update()
 
