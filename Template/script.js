@@ -15,7 +15,22 @@ const sizes = {
 
 }
 
-console.log(sizes.width)
+//Resizing
+window.addEventListener('resize',()=>
+{
+    //Update Sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+    sizes.aspectRatio = window.innerHeight / window.innerWidth
+
+    //update camera
+    camera.aspect = sizes.aspectRatio
+    camera.updateProjectionMatrix()
+
+    //update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
 
 //console.log(THREE)
 console.log("Hi there")
