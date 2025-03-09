@@ -223,11 +223,11 @@ const findSearchTermInTokenizedText = (term, color) =>
 
 
 tokenizeSourceText()
-findSearchTermInTokenizedText("semeter", "brown")
-findSearchTermInTokenizedText("god", "orange")
+//findSearchTermInTokenizedText("semeter", "brown")
+//findSearchTermInTokenizedText("wings", "orange")
 findSearchTermInTokenizedText("storm", "grey")
 findSearchTermInTokenizedText("power", "blue")
-findSearchTermInTokenizedText("argust", "red")
+findSearchTermInTokenizedText("wings", "red")
 /**
  * *Annimation Loop**
  * 
