@@ -127,6 +127,8 @@ const group2 = new THREE.Group()
 scene.add(group2)
 const group3 = new THREE.Group()
 scene.add(group3)
+const group4 = new THREE.Group()
+scene.add(group4)
 
 const uiObj = {
     sourceText: `According to all known laws
@@ -2109,17 +2111,17 @@ I had virtually no rehearsal for that.
         saveSourceText()
     },
     term1: {
-        term: 'fox',
-        color: '#aa00ff',
+        term: 'bee',
+        color: '#e8ea7c',
         diameter: 10,
-        scale: 1,
+        scale: .5,
         ramdomized: true,
         group: group1,
         nCubes: 100
     },
     term2: {
-        term: 'dog',
-        color: "#00ffaa",
+        term: 'honey',
+        color: "#fa9501",
         diameter: 10,
         scale: 1,
         ramdomized: true,
@@ -2128,12 +2130,22 @@ I had virtually no rehearsal for that.
     },
     
     term3: {
-        term: "",
-        color: "",
+        term: "court",
+        color: "#01fa55",
         diameter: 10,
         scale: 1,
         ramdomized: true,
         group: group3,
+        nCubes: 100
+    },
+
+    term4: {
+        term: "oourt",
+        color: "#01fa55",
+        diameter: 10,
+        scale: 1,
+        ramdomized: true,
+        group: group4,
         nCubes: 100
     },
     
@@ -2178,6 +2190,7 @@ const saveTerms = () =>
     findSearchTermInTokenizedText(uiObj.term1)
     findSearchTermInTokenizedText(uiObj.term2)
     findSearchTermInTokenizedText(uiObj.term3)
+    findSearchTermInTokenizedText(uiObj.term4)
     
 }
 
@@ -2231,6 +2244,18 @@ termsFolder
 termsFolder 
     .addColor(uiObj.term3, 'color')
     .name('Term 3 Color')
+
+termsFolder
+    .add(uiObj.term4, 'term')
+    .name('Term 4')
+
+termsFolder
+    .add(group4, 'visible')
+    .name("Term4 Visibility")
+
+termsFolder 
+    .addColor(uiObj.term4, 'color')
+    .name('Term 4 Color')
 
 VisualizeFolder
     .add(uiObj, 'saveTerms')
